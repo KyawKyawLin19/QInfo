@@ -22,7 +22,10 @@
         <form action="/searchAll" method="post" >
         {{csrf_field()}}
             <div class="row align-items-center">
-                <div class="col-lg-12 col-xl-4 no-sm-border border-right">
+                <div class="col-lg-12 col-xl-3 no-sm-border border-right">
+                    <input type="text" class="form-control" placeholder="Search with Room No" name="searchWithRoomNo">
+                </div>
+                <div class="col-lg-12 col-xl-2 no-sm-border border-right">
                     <input type="text" class="form-control" placeholder="Search with Center" name="searchWithCenter">
                 </div>
                 <div class="col-lg-12 col-xl-3 no-sm-border border-right">
@@ -31,7 +34,7 @@
                         <input type="text" class="form-control" placeholder="Search with Name" name="searchWithName">
                     </div>
                 </div>
-                <div class="col-lg-12 col-xl-3 no-sm-border border-right">
+                <div class="col-lg-12 col-xl-2 no-sm-border border-right">
                     <div class="wrap-icon">
                         <span class="icon icon-room"></span>
                         <input type="text" class="form-control" placeholder="Search with NRC" name="searchWithNrc">
@@ -61,6 +64,7 @@
                             <th scope="col">NRC</th>
                             <th scope="col">Address</th>
                             <th scope="col">Center</th>
+                            <th scope="col">Room No</th>
                             <th scope="col">Ph Number</th>
                         </tr>
                     </thead>
@@ -73,6 +77,7 @@
                             <td>{{$patient->nrc}}</td>
                             <td>{{$patient->address}}</td>
                             <td>{{$patient->center->name}}</td>
+                            <td>{{$patient->room_no}}</td>
                             <td>{{$patient->ph_no}}</td>
                         <tr>
                     @endforeach

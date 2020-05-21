@@ -21,6 +21,7 @@ class CreatePatientsTable extends Migration
             $table->string('address');
             $table->integer('ph_no');
             $table->integer('center_id');
+            $table->string('room_no');
             $table->timestamps();
         });
     }

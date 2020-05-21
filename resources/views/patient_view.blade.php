@@ -60,6 +60,7 @@
                             <th scope="col">DOB</th>
                             <th scope="col">NRC</th>
                             <th scope="col">Address</th>
+                            <th scope="col">Room No</th>
                             <th scope="col">Ph Number</th>
                         </tr>
                     </thead>
@@ -71,6 +72,7 @@
                             <td>{{$patient->dob}}</td>
                             <td>{{$patient->nrc}}</td>
                             <td>{{$patient->address}}</td>
+                            <td>{{$patient->room_no}}</td>
                             <td>{{$patient->ph_no}}</td>
                         <tr>
                     @endforeach

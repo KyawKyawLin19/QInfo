@@ -95,6 +95,7 @@ class PatientController extends Controller
 
         $name = $request->searchWithName;
         $nrc = $request->searchWithNrc;
+        $room = $request->searchWithRoomNo;
         $id = $request->centerid;
 
         $patients = $patients->newQuery();
@@ -107,6 +108,10 @@ class PatientController extends Controller
     
         if ($request->has('searchWithNrc')) {
             $patients->where('nrc','like','%'.$nrc.'%');
+        }
+
+        if ($request->has('searchWithRoomNo')) {
+            $patients->where('room_no','like','%'.$room.'%');
         }
  
         $patients = $patients->get();
@@ -125,6 +130,7 @@ class PatientController extends Controller
         $name = $request->searchWithName;
         $nrc = $request->searchWithNrc;
      // $center = $request->searchWithCenter;
+        $room = $request->searchWithRoomNo;
 
         $patients = $patients->newQuery();
  
@@ -139,6 +145,10 @@ class PatientController extends Controller
         // if ($request->has('searchWithCenter')) {
         //     $patients->where('center_id','like','%'.$center.'%');
         // }
+
+        if ($request->has('searchWithRoomNo')) {
+            $patients->where('room_no','like','%'.$room.'%');
+        }
  
         $patients = $patients->get();
         return view('all_patients_view',compact('patients'));

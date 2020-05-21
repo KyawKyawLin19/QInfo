@@ -19,6 +19,7 @@ class PatientTableSeeder extends Seeder
             'address' => 'Yangon',
             'ph_no' => '0912345678',
             'center_id' => '1',
+            'room_no' => 'A003',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
@@ -29,6 +30,7 @@ class PatientTableSeeder extends Seeder
             'address' => 'Yangon',
             'ph_no' => '0912345678',
             'center_id' => '2',
+            'room_no' => 'A002',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
@@ -39,6 +41,7 @@ class PatientTableSeeder extends Seeder
             'address' => 'Yangon',
             'ph_no' => '0912345678',
             'center_id' => '1',
+            'room_no' => 'A001',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);

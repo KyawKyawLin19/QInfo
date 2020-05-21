@@ -39,7 +39,6 @@
             <h6 class="card-title">Contact : 0912345678</h6>
             <a href="/getPatients/{{$d->id}}" class="btn btn-info">Person</a>
             <a href="/getVolunteers/{{$d->id}}" class="btn btn-info">Volunter</a>
-            <a href="/getHospital/{{$d->id}}" class="btn btn-info">Room</a>
         </div>
         </div>  
             </div>
