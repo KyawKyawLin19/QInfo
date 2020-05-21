@@ -35,8 +35,8 @@
         <h4>{{$d->name}}</h4>
         </div>
         <div class="card-body">
-            <h6 class="card-title">Location : Yangon</h6>
-            <h6 class="card-title">Contact : 0912345678</h6>
+            <h6 class="card-title">Location : {{$d->address}}</h6>
+            <h6 class="card-title">Contact : {{$d->ph_no}}</h6>
             <a href="/getPatients/{{$d->id}}" class="btn btn-info">Person</a>
             <a href="/getVolunteers/{{$d->id}}" class="btn btn-info">Volunter</a>
         </div>
