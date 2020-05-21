@@ -129,28 +129,32 @@ class PatientController extends Controller
 
         $name = $request->searchWithName;
         $nrc = $request->searchWithNrc;
-     // $center = $request->searchWithCenter;
+        $center = $request->searchWithCenter;
         $room = $request->searchWithRoomNo;
 
         $patients = $patients->newQuery();
- 
+
         if ($request->has('searchWithName')) {
             $patients->where('name','like','%'.$name.'%');
         }
-    
+
         if ($request->has('searchWithNrc')) {
             $patients->where('nrc','like','%'.$nrc.'%');
         }
 
-        // if ($request->has('searchWithCenter')) {
-        //     $patients->where('center_id','like','%'.$center.'%');
-        // }
-
         if ($request->has('searchWithRoomNo')) {
             $patients->where('room_no','like','%'.$room.'%');
         }
+        
+        if ($request->has('searchWithCenter')) {
+            $patients->join('centers', 'patients.center_id', 'centers.id')
+                    ->where('centers.name', $center);
+        }   
+        dd($patients);
+        // 
  
         $patients = $patients->get();
+        // dd($patients);
         return view('all_patients_view',compact('patients'));
     }
 }
