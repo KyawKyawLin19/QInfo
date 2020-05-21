@@ -20,7 +20,7 @@ class CreateVolunteersTable extends Migration
             $table->string('nrc');
             $table->string('address');
             $table->integer('ph_no');
-            $table->integer('qcenter_id');
+            $table->integer('center_id');
             $table->timestamps();
         });
     }

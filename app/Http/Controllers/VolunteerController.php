@@ -87,59 +87,59 @@ class VolunteerController extends Controller
     public function getVolunteers(Volunteer $volunteer,$id){
         $center = Center::find($id);
         $volunteers = $center->volunteers;
-        return view('volunteer_view',compact('volunteers'));
+        return view('volunteer_view',compact(['volunteers','id']));
     }
 
-    // public function searchPatient(Request $request,Patient $patients){
+    public function searchVolunteer(Request $request,Volunteer $volunteers){
 
-    //     $name = $request->searchWithName;
-    //     $nrc = $request->searchWithNrc;
-    //     $id = $request->centerid;
+        $name = $request->searchWithName;
+        $nrc = $request->searchWithNrc;
+        $id = $request->centerid;
 
-    //     $patients = $patients->newQuery();
+        $volunteers = $volunteers->newQuery();
 
-    //     $patients->where('center_id',$id);
+        $volunteers->where('center_id',$id);
  
-    //     if ($request->has('searchWithName')) {
-    //         $patients->where('name','like','%'.$name.'%');
-    //     }
+        if ($request->has('searchWithName')) {
+            $volunteers->where('name','like','%'.$name.'%');
+        }
     
-    //     if ($request->has('searchWithNrc')) {
-    //         $patients->where('nrc','like','%'.$nrc.'%');
-    //     }
+        if ($request->has('searchWithNrc')) {
+            $volunteers->where('nrc','like','%'.$nrc.'%');
+        }
  
-    //     $patients = $patients->get();
-    //     return view('patient_view',compact(['patients','id']));
-    // }
+        $volunteers = $volunteers->get();
+        return view('volunteer_view',compact(['volunteers','id']));
+    }
 
 
-    public function getAllLists(Volunteer $volunteer){
+    public function getAllLists(Volunteer $volunteers){
         $volunteers = Volunteer::all();
         return view('all_volunteers_view',compact('volunteers'));
     }
 
 
-    // public function searchAllPatients(Request $request,Patient $patients){
+    public function searchAllVolunteers(Request $request,Volunteer $volunteers){
 
-    //     $name = $request->searchWithName;
-    //     $nrc = $request->searchWithNrc;
-    //  // $center = $request->searchWithCenter;
+        $name = $request->searchWithName;
+        $nrc = $request->searchWithNrc;
+     // $center = $request->searchWithCenter;
 
-    //     $patients = $patients->newQuery();
+        $volunteers = $volunteers->newQuery();
  
-    //     if ($request->has('searchWithName')) {
-    //         $patients->where('name','like','%'.$name.'%');
-    //     }
+        if ($request->has('searchWithName')) {
+            $volunteers->where('name','like','%'.$name.'%');
+        }
     
-    //     if ($request->has('searchWithNrc')) {
-    //         $patients->where('nrc','like','%'.$nrc.'%');
-    //     }
+        if ($request->has('searchWithNrc')) {
+            $volunteers->where('nrc','like','%'.$nrc.'%');
+        }
 
-    //     // if ($request->has('searchWithCenter')) {
-    //     //     $patients->where('center_id','like','%'.$center.'%');
-    //     // }
+        // if ($request->has('searchWithCenter')) {
+        //     $patients->where('center_id','like','%'.$center.'%');
+        // }
  
-    //     $patients = $patients->get();
-    //     return view('all_patients_view',compact('patients'));
-    // }
+        $volunteers = $volunteers->get();
+        return view('all_volunteers_view',compact('volunteers'));
+    }
 }

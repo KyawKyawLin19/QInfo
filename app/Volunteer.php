@@ -8,6 +8,6 @@ use App\Center;
 class Volunteer extends Model
 {
     public function center(){
-        return $this->belongsTo(Center::class,'qcenter_id');
+        return $this->belongsTo(Center::class,'center_id');
     }
 }

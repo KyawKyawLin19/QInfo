@@ -30,5 +30,5 @@ Route::post('/searchAll','PatientController@searchAllPatients');
 Route::resource('volunteer','VolunteerController');
 Route::get('/getVolunteers/{id}','VolunteerController@getVolunteers');
 Route::get('/getAllVolunteers','VolunteerController@getAllLists');
-Route::post('/search','VolunteerController@searchVolunteer');
-Route::post('/searchAll','VolunteerController@searchAllVolunteers');
+Route::post('/searchVolunteer','VolunteerController@searchVolunteer');
+Route::post('/searchAllVolunteers','VolunteerController@searchAllVolunteers');
