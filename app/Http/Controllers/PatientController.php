@@ -6,6 +6,7 @@ use App\Patient;
 use Illuminate\Http\Request;
 use App\Center;
 use App\Township;
+use DB;
 
 class PatientController extends Controller
 {
@@ -16,7 +17,7 @@ class PatientController extends Controller
      */
     public function index()
     {
-       
+       return view('admin.patient_create');
     }
 
     /**
@@ -103,7 +104,7 @@ class PatientController extends Controller
         $patients->where('center_id',$id);
  
         if ($request->has('searchWithName')) {
-            $patients->where('name','like','%'.$name.'%');
+            $patients->where('p_name','like','%'.$name.'%');
         }
     
         if ($request->has('searchWithNrc')) {
@@ -132,29 +133,29 @@ class PatientController extends Controller
         $center = $request->searchWithCenter;
         $room = $request->searchWithRoomNo;
 
-        $patients = $patients->newQuery();
+        $query = "SELECT * FROM patients";
+        $sql = $query;
+        $conditions = array();
 
-        if ($request->has('searchWithName')) {
-            $patients->where('name','like','%'.$name.'%');
+        if(! empty($name)) {
+            $conditions[] = "patients.p_name='$name'";
+        }
+        if(! empty($nrc)) {
+            $conditions[] = "patients.nrc='$nrc'";
+        }
+        if(! empty($room)) {
+            $conditions[] = "patients.room_no='$room'";
+        }
+        if(! empty($center)) {
+            $sql .=" inner join centers ON patients.center_id = centers.id";
+            $conditions[] = "centers.name='$center'";
         }
 
-        if ($request->has('searchWithNrc')) {
-            $patients->where('nrc','like','%'.$nrc.'%');
+        if (count($conditions) > 0) {
+        $sql .= " WHERE " . implode(' AND ', $conditions);
         }
 
-        if ($request->has('searchWithRoomNo')) {
-            $patients->where('room_no','like','%'.$room.'%');
-        }
-        
-        if ($request->has('searchWithCenter')) {
-            $patients->join('centers', 'patients.center_id', 'centers.id')
-                    ->where('centers.name', $center);
-        }   
-        dd($patients);
-        // 
- 
-        $patients = $patients->get();
-        // dd($patients);
+        $patients = DB::select($sql);
         return view('all_patients_view',compact('patients'));
     }
 }

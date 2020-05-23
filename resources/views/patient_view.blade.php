@@ -68,7 +68,7 @@
                     @foreach($patients as $patient)
                         <tr>
                             <th scope="row">{{$patient->id}}</th>
-                            <td>{{$patient->name}}</td>
+                            <td>{{$patient->p_name}}</td>
                             <td>{{$patient->dob}}</td>
                             <td>{{$patient->nrc}}</td>
                             <td>{{$patient->address}}</td>

@@ -13,7 +13,7 @@ class PatientTableSeeder extends Seeder
     public function run()
     {
         DB::table('patients')->insert([
-            'name' => 'Aung Aung',
+            'p_name' => 'Aung Aung',
             'dob' => '2/1/1990',
             'nrc' => '12/AbCdEf(N)123456',
             'address' => 'Yangon',
@@ -24,7 +24,7 @@ class PatientTableSeeder extends Seeder
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
         DB::table('patients')->insert([
-            'name' => 'Maung Maung',
+            'p_name' => 'Maung Maung',
             'dob' => '1/1/1990',
             'nrc' => '12/AbCdEf(N)654321',
             'address' => 'Yangon',
@@ -35,7 +35,7 @@ class PatientTableSeeder extends Seeder
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
         DB::table('patients')->insert([
-            'name' => 'Zaw Zaw',
+            'p_name' => 'Zaw Zaw',
             'dob' => '3/1/1990',
             'nrc' => '12/AbCdEf(N)123678',
             'address' => 'Yangon',

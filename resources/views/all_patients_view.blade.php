@@ -72,11 +72,15 @@
                     @foreach($patients as $patient)
                         <tr>
                             <th scope="row">{{$patient->id}}</th>
-                            <td>{{$patient->name}}</td>
+                            <td>{{$patient->p_name}}</td>
                             <td>{{$patient->dob}}</td>
                             <td>{{$patient->nrc}}</td>
                             <td>{{$patient->address}}</td>
-                            <td>{{$patient->center->name}}</td>
+                            @if($patient->name == null)
+                                <td>{{$patient->center->name}}</td>
+                            @else
+                                <td>{{$patient->name}}</td>
+                            @endif
                             <td>{{$patient->room_no}}</td>
                             <td>{{$patient->ph_no}}</td>
                         <tr>

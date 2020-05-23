@@ -34,5 +34,5 @@ class HomeController extends Controller
         $data = Center::where('township_id',$id)->get();
         return view('center_view',compact(['data','cities']));
     }
- 
+
 }
