@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Patient;
 use App\Volunteer;
+use App\Township;
 
 class Center extends Model
 {
@@ -19,5 +20,9 @@ class Center extends Model
     public function volunteers()
     {
         return $this->hasMany(Volunteer::class);
+    }
+
+    public function township(){
+        return $this->belongsTo(Township::class);
     }
 }

@@ -10,10 +10,9 @@
 	        </ul>
 	    </div>
 		@endif
-		<form action="/receipe" method="post">
+		<form action="/volunteer" method="post">
 			{{csrf_field()}}
   			<div class="row">
-  				<h1 class="text-red" style="font-family: 'Kaushan Script', cursive;">Add New Receipe</h1>
     			<div class="col-md-6">
 					<div class="form-group">
 						<label>Patient Name</label>
@@ -25,13 +24,29 @@
 					</div>
 					<div class="form-group">
 						<label>NRC</label>
-						<input type="text" name="dob" class="form-control" value="{{ old('dob') }}" required>
+						<input type="text" name="nrc" class="form-control" value="{{ old('nrc') }}" required>
+					</div>	
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label>Address</label>
+						<input type="text" name="address" class="form-control" value="{{ old('address') }}" required>
 					</div>
 					<div class="form-group">
-                        <label>Description</label>
-                        <textarea class="form-control" rows="3" placeholder="Enter description..."></textarea>
-                    </div>
-					<button type="submit" class="btn btn-primary">Submit</button>
+						<label>Ph No</label>
+						<input type="text" name="ph_no" class="form-control" value="{{ old('ph_no') }}" required>
+					</div>
+					<div class="form-group">
+						<label>Centers</label>
+						<select class="form-control" name="center_id">
+							@foreach($centers as $value)
+								<option value="{{$value->id}}">{{$value->name}}</option>
+							@endforeach
+						</select>
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
 				</div>
 			</div>
 		</form>

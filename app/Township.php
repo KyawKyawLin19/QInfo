@@ -7,6 +7,8 @@ use App\City;
 class Township extends Model
 {
     
+    protected $fillable = ['name','city_id'];
+
     public function city(){
         return $this->belongsTo(City::class);
     }

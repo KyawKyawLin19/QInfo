@@ -15,7 +15,8 @@ class VolunteerController extends Controller
      */
     public function index()
     {
-        //
+        $volunteers = Volunteer::all();
+        return view('admin.volunteer.index',compact('volunteers'));
     }
 
     /**
@@ -25,7 +26,8 @@ class VolunteerController extends Controller
      */
     public function create()
     {
-        //
+        $centers = Center::all();
+        return view('admin.volunteer.create',compact('centers'));
     }
 
     /**
@@ -36,7 +38,17 @@ class VolunteerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = request() -> validate([
+            'name' => 'required|max:100',
+            'dob' => 'required',
+            'nrc' => 'required',
+            'address' => 'required',
+            'ph_no' => 'required',
+            'center_id' => 'required',
+            ]);
+
+        $volunteer = Volunteer::create($validatedData);
+        return redirect('volunteer')->with('success','Volunteer has been created');
     }
 
     /**

@@ -32,3 +32,10 @@ Route::get('/getVolunteers/{id}','VolunteerController@getVolunteers');
 Route::get('/getAllVolunteers','VolunteerController@getAllLists');
 Route::post('/searchVolunteer','VolunteerController@searchVolunteer');
 Route::post('/searchAllVolunteers','VolunteerController@searchAllVolunteers');
+
+Route::resource('city','CityController');
+Route::resource('township','TownshipController');
+Route::resource('center','CenterController');
+
+
+

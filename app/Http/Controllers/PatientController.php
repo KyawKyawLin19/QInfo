@@ -17,7 +17,8 @@ class PatientController extends Controller
      */
     public function index()
     {
-       return view('admin.patient_create');
+        $patients = Patient::all();
+        return view('admin.patient.index',compact('patients'));
     }
 
     /**
@@ -27,7 +28,8 @@ class PatientController extends Controller
      */
     public function create()
     {
-        //
+        $centers = Center::all();
+        return view('admin.patient.create',compact('centers'));
     }
 
     /**
@@ -38,7 +40,18 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = request() -> validate([
+            'p_name' => 'required|max:100',
+            'dob' => 'required',
+            'nrc' => 'required',
+            'address' => 'required',
+            'ph_no' => 'required',
+            'center_id' => 'required',
+            'room_no' => 'required',
+            ]);
+
+        $patient = Patient::create($validatedData);
+        return redirect('patient')->with('success','Patient has been created');
     }
 
     /**
