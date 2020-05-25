@@ -7,10 +7,15 @@ use App\Township;
 use App\City;
 use App\Center;
 use App\Patient;
+use App\Volunteer;
 use DB;
 
 class HomeController extends Controller
 {
+    public function __construct()
+    {
+     $this->middleware('auth')->only('admin_home');
+    }
     /**
      * Show the application dashboard.
      *
@@ -34,5 +39,13 @@ class HomeController extends Controller
         $data = Center::where('township_id',$id)->get();
         return view('center_view',compact(['data','cities']));
     }
+
+    public function admin_home(){
+        $centers = Center::all();
+        $patients = Patient::all();
+        $volunteers = Volunteer::all();
+        $townships = Township::all();
+        return view('admin.admin_home',compact(['centers','patients','volunteers','townships']));
+    } 
 
 }
