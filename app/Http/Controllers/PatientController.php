@@ -10,6 +10,12 @@ use DB;
 
 class PatientController extends Controller
 {
+    public function __construct()
+    {
+     $this->middleware('auth')->except(['getPatients', 'searchPatient','getAllLists','searchAllPatients']);
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +23,7 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $patients = Patient::all();
+        $patients = Patient::first()->paginate(5);
         return view('admin.patient.index',compact('patients'));
     }
 
@@ -43,9 +49,9 @@ class PatientController extends Controller
         $validatedData = request() -> validate([
             'p_name' => 'required|max:100',
             'dob' => 'required',
-            'nrc' => 'required',
+            'nrc' => 'required|unique:App\Patient,nrc',
             'address' => 'required',
-            'ph_no' => 'required',
+            'ph_no' => 'required|unique:App\Patient,ph_no',
             'center_id' => 'required',
             'room_no' => 'required',
             ]);
@@ -73,7 +79,8 @@ class PatientController extends Controller
      */
     public function edit(Patient $patient)
     {
-        //
+        $centers = Center::all();
+        return view('admin.patient.edit',compact(['centers','patient']));
     }
 
     /**
@@ -85,7 +92,18 @@ class PatientController extends Controller
      */
     public function update(Request $request, Patient $patient)
     {
-        //
+        $validatedData = request() -> validate([
+            'p_name' => 'required|max:100',
+            'dob' => 'required',
+            'nrc' => 'required|unique:App\Patient,nrc|regex:[0-9]{2}\/[A-Za-z]{6}\([A-Z]{1}\)[0-9]{6}',
+            'address' => 'required',
+            'ph_no' => 'required|unique:App\Patient,ph_no',
+            'center_id' => 'required',
+            'room_no' => 'required',
+            ]);
+
+        $patient = $patient->update($validatedData);
+        return redirect('patient')->with('success','Patient has been updated');
     }
 
     /**
@@ -96,7 +114,8 @@ class PatientController extends Controller
      */
     public function destroy(Patient $patient)
     {
-        //
+        $patient->delete();
+        return redirect('/patient')->with('success','Patient deleted');
     }
 
     public function getPatients(Patient $patients,$id){

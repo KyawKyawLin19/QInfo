@@ -1,5 +1,16 @@
 @extends('layouts.app')
 @section('content')
+
+	<section class="content-header">
+        <h1>
+            Create Volunteers
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{{url('/admin')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Volunteer</li><li class="active">Create</li>
+        </ol>
+    </section>
+
 	<div class="container">
 		@if ($errors->any())
 	    <div class="alert alert-danger">
@@ -15,7 +26,7 @@
   			<div class="row">
     			<div class="col-md-6">
 					<div class="form-group">
-						<label>Patient Name</label>
+						<label>Volunteer Name</label>
 						<input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
 					</div>
 					<div class="form-group">

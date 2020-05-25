@@ -1,5 +1,16 @@
 @extends('layouts.app')
 @section('content')
+
+	<section class="content-header">
+        <h1>
+            Add New Center
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{{url('/admin')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Centers</li><li class="active">Create</li>
+        </ol>
+    </section>
+
 	<div class="container">
 		@if ($errors->any())
 	    <div class="alert alert-danger">

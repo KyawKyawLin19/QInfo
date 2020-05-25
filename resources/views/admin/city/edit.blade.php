@@ -3,11 +3,11 @@
 
 	<section class="content-header">
         <h1>
-            Add New City
+            Edit City Info
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{url('/admin')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Cities</li><li class="active">Create</li>
+            <li class="active">Cities</li><li class="active">Edit</li>
         </ol>
     </section>
 
@@ -27,7 +27,7 @@
     			<div class="col-md-12">
 					<div class="form-group">
 						<label>City Name</label>
-						<input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
+						<input type="text" name="name" class="form-control" value="{{ $city->name }}" required>
 					</div>
 				</div>
                 <div class="col-md-12">

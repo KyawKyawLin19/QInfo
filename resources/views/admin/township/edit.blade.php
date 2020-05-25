@@ -3,11 +3,11 @@
 
 	<section class="content-header">
         <h1>
-            Add New City
+			Edit Townships Info 
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{url('/admin')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Cities</li><li class="active">Create</li>
+            <li class="active">Townships</li><li class="active">Edit</li>
         </ol>
     </section>
 
@@ -21,13 +21,25 @@
 	        </ul>
 	    </div>
 		@endif
-		<form action="/city" method="post">
-			@csrf
+		<form action="/township/{{$township->id}}" method="post">
+			{{ method_field("PATCH") }}
+			{{ csrf_field() }}
   			<div class="row">
     			<div class="col-md-12">
 					<div class="form-group">
-						<label>City Name</label>
-						<input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
+						<label>Township Name</label>
+						<input type="text" name="name" class="form-control" value="{{ $township->name }}" required>
+					</div>
+				</div>
+                <div class="col-md-12">
+                    <div class="form-group">
+						<label>Cities</label>
+						<select class="form-control" name="city_id">
+							@foreach($cities as $value)
+								<option value="{{$value->id}}"{{$township->city->id == $value->id? "selected" : ""}}>
+        							{{$value->name}}</option>
+							@endforeach
+						</select>
 					</div>
 				</div>
                 <div class="col-md-12">

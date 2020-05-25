@@ -8,6 +8,10 @@ use App\Center;
 
 class VolunteerController extends Controller
 {
+    public function __construct()
+    {
+     $this->middleware('auth')->except(['getVolunteers', 'searchVolunteer','getAllLists','searchAllVolunteers']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +19,7 @@ class VolunteerController extends Controller
      */
     public function index()
     {
-        $volunteers = Volunteer::all();
+        $volunteers = Volunteer::first()->paginate(10);
         return view('admin.volunteer.index',compact('volunteers'));
     }
 
@@ -70,7 +74,8 @@ class VolunteerController extends Controller
      */
     public function edit(Volunteer $volunteer)
     {
-        //
+        $centers = Center::all();
+        return view('admin.volunteer.edit',compact(['centers','volunteer']));
     }
 
     /**
@@ -82,7 +87,16 @@ class VolunteerController extends Controller
      */
     public function update(Request $request, Volunteer $volunteer)
     {
-        //
+        $validatedData = request() -> validate([
+            'name' => 'required|max:100',
+            'dob' => 'required',
+            'nrc' => 'required',
+            'address' => 'required',
+            'ph_no' => 'required',
+            'center_id' => 'required',
+            ]);
+        $volunteer = $volunteer->update($validatedData);
+        return redirect('volunteer')->with('success','volunteer has been updated');
     }
 
     /**
@@ -93,7 +107,8 @@ class VolunteerController extends Controller
      */
     public function destroy(Volunteer $volunteer)
     {
-        //
+        $volunteer->delete();
+        return redirect('/volunteer')->with('success','Volunteer deleted');
     }
 
     public function getVolunteers(Volunteer $volunteer,$id){

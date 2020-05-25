@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class CityController extends Controller
 {
+    public function __construct()
+    {
+     $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +18,7 @@ class CityController extends Controller
      */
     public function index()
     {
-        $cities = City::all();
+        $cities = City::first()->paginate(5);
         return view('admin.city.index',compact('cities'));
     }
 
@@ -63,7 +67,7 @@ class CityController extends Controller
      */
     public function edit(City $city)
     {
-        //
+        return view('admin.city.edit',compact('city'));
     }
 
     /**
@@ -75,7 +79,12 @@ class CityController extends Controller
      */
     public function update(Request $request, City $city)
     {
-        //
+        $validatedData = request() -> validate([
+            'name' => 'required|max:100|regex:[a-zA-Z]',
+        ]);
+        
+        $city = $city->update($validatedData);
+        return redirect('city')->with('success','City has been updated');
     }
 
     /**
@@ -86,6 +95,7 @@ class CityController extends Controller
      */
     public function destroy(City $city)
     {
-        //
+        $city->delete();
+        return redirect('/city')->with('success','City deleted');
     }
 }

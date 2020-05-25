@@ -37,5 +37,7 @@ Route::resource('city','CityController');
 Route::resource('township','TownshipController');
 Route::resource('center','CenterController');
 
+Route::get('admin','AdminController@index');
+
 
 

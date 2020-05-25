@@ -15,7 +15,7 @@ class CenterController extends Controller
      */
     public function index()
     {
-        $centers = Center::all();
+        $centers = Center::first()->paginate(5);
         return view('admin.center.index',compact('centers'));
     }
 
@@ -68,7 +68,8 @@ class CenterController extends Controller
      */
     public function edit(Center $center)
     {
-        //
+        $townships = Township::all();
+        return view('admin.center.edit',compact(['townships','center']));
     }
 
     /**
@@ -80,7 +81,15 @@ class CenterController extends Controller
      */
     public function update(Request $request, Center $center)
     {
-        //
+        $validatedData = request() -> validate([
+            'name' => 'required|max:100',
+            'address' => 'required|max:100',
+            'ph_no' => 'required',
+            'township_id' => 'required'
+            ]);
+
+        $center = $center->update($validatedData);
+        return redirect('center')->with('success','Center has been updated');
     }
 
     /**
@@ -91,6 +100,7 @@ class CenterController extends Controller
      */
     public function destroy(Center $center)
     {
-        //
+        $center->delete();
+        return redirect('/center')->with('success','Center deleted');
     }
 }

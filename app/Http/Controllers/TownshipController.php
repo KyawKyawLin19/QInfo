@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class TownshipController extends Controller
 {
+    public function __construct()
+    {
+     $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +20,7 @@ class TownshipController extends Controller
      */
     public function index()
     {
-        $townships = Township::all();
+        $townships = Township::first()->paginate(5);
         return view('admin.township.index',compact('townships'));
     }
 
@@ -66,7 +71,8 @@ class TownshipController extends Controller
      */
     public function edit(Township $township)
     {
-        //
+        $cities = City::all();
+        return view('admin.township.edit',compact(['cities','township']));
     }
 
     /**
@@ -78,7 +84,13 @@ class TownshipController extends Controller
      */
     public function update(Request $request, Township $township)
     {
-        //
+        $validatedData = request() -> validate([
+            'name' => 'required|max:100',
+            'city_id' => 'required',
+            ]);
+
+        $township = $township->update($validatedData);
+        return redirect('township')->with('success','Township has been Updated');
     }
 
     /**
@@ -89,6 +101,7 @@ class TownshipController extends Controller
      */
     public function destroy(Township $township)
     {
-        //
+        $township->delete();
+        return redirect('/township')->with('success','Township deleted');
     }
 }
