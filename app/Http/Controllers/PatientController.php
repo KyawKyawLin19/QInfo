@@ -121,7 +121,7 @@ class PatientController extends Controller
     public function getPatients(Patient $patients,$id){
         $center = Center::find($id);
         $patients=$center->patients;
-        return view('patient_view',compact(['patients','id']));
+        return view('patient.patient_view',compact(['patients','id']));
     }
 
     public function searchPatient(Request $request,Patient $patients){
@@ -148,13 +148,13 @@ class PatientController extends Controller
         }
  
         $patients = $patients->get();
-        return view('patient_view',compact(['patients','id']));
+        return view('patient.patient_view',compact(['patients','id']));
     }
 
 
     public function getAllLists(Patient $patients){
         $patients = Patient::all();
-        return view('all_patients_view',compact('patients'));
+        return view('patient.all_patients_view',compact('patients'));
     }
 
 
@@ -188,6 +188,6 @@ class PatientController extends Controller
         }
 
         $patients = DB::select($sql);
-        return view('all_patients_view',compact('patients'));
+        return view('patient.all_patients_view',compact('patients'));
     }
 }

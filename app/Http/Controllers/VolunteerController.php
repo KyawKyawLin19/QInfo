@@ -114,7 +114,7 @@ class VolunteerController extends Controller
     public function getVolunteers(Volunteer $volunteer,$id){
         $center = Center::find($id);
         $volunteers = $center->volunteers;
-        return view('volunteer_view',compact(['volunteers','id']));
+        return view('volunteer.volunteer_view',compact(['volunteers','id']));
     }
 
     public function searchVolunteer(Request $request,Volunteer $volunteers){
@@ -142,7 +142,7 @@ class VolunteerController extends Controller
 
     public function getAllLists(Volunteer $volunteers){
         $volunteers = Volunteer::all();
-        return view('all_volunteers_view',compact('volunteers'));
+        return view('volunteer.all_volunteers_view',compact('volunteers'));
     }
 
 
@@ -167,6 +167,6 @@ class VolunteerController extends Controller
         // }
  
         $volunteers = $volunteers->get();
-        return view('all_volunteers_view',compact('volunteers'));
+        return view('volunteer.all_volunteers_view',compact('volunteers'));
     }
 }

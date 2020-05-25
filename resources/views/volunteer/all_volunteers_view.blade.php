@@ -2,14 +2,13 @@
 
 @section('data')
 
-    <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url({{asset('img/hero_3.jpg')}});" data-aos="fade" data-stellar-background-ratio="0.5">
+    <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url({{asset('img/hero_5.jpg')}});" data-aos="fade" data-stellar-background-ratio="0.5">
         <div class="container">
             <div class="row align-items-center justify-content-center text-center">
-
                 <div class="col-md-10" data-aos="fade-up" data-aos-delay="400">
                     <div class="row justify-content-center">
                         <div class="col-md-8 text-center">
-                            <h1>Quaratine Person Info</h1>
+                            <h1>Volunteers Info</h1>
                             <p data-aos="fade-up" data-aos-delay="100">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate beatae quisquam perspiciatis adipisci ipsam quam.</p>
                         </div>
                     </div>
@@ -19,13 +18,10 @@
     </div>
 
     <div class="form-search-wrap p-2" data-aos="fade-up" data-aos-delay="200">
-        <form action="/searchAll" method="post" >
+        <form action="/searchAllVolunteers" method="post" >
         {{csrf_field()}}
             <div class="row align-items-center">
-                <div class="col-lg-12 col-xl-3 no-sm-border border-right">
-                    <input type="text" class="form-control" placeholder="Search with Room No" name="searchWithRoomNo">
-                </div>
-                <div class="col-lg-12 col-xl-2 no-sm-border border-right">
+                <div class="col-lg-12 col-xl-4 no-sm-border border-right">
                     <input type="text" class="form-control" placeholder="Search with Center" name="searchWithCenter">
                 </div>
                 <div class="col-lg-12 col-xl-3 no-sm-border border-right">
@@ -34,7 +30,7 @@
                         <input type="text" class="form-control" placeholder="Search with Name" name="searchWithName">
                     </div>
                 </div>
-                <div class="col-lg-12 col-xl-2 no-sm-border border-right">
+                <div class="col-lg-12 col-xl-3 no-sm-border border-right">
                     <div class="wrap-icon">
                         <span class="icon icon-room"></span>
                         <input type="text" class="form-control" placeholder="Search with NRC" name="searchWithNrc">
@@ -64,25 +60,19 @@
                             <th scope="col">NRC</th>
                             <th scope="col">Address</th>
                             <th scope="col">Center</th>
-                            <th scope="col">Room No</th>
                             <th scope="col">Ph Number</th>
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($patients as $patient)
+                    @foreach($volunteers as $volunteer)
                         <tr>
-                            <th scope="row">{{$patient->id}}</th>
-                            <td>{{$patient->p_name}}</td>
-                            <td>{{$patient->dob}}</td>
-                            <td>{{$patient->nrc}}</td>
-                            <td>{{$patient->address}}</td>
-                            @if($patient->name == null)
-                                <td>{{$patient->center->name}}</td>
-                            @else
-                                <td>{{$patient->name}}</td>
-                            @endif
-                            <td>{{$patient->room_no}}</td>
-                            <td>{{$patient->ph_no}}</td>
+                            <th scope="row">{{$volunteer->id}}</th>
+                            <td>{{$volunteer->name}}</td>
+                            <td>{{$volunteer->dob}}</td>
+                            <td>{{$volunteer->nrc}}</td>
+                            <td>{{$volunteer->address}}</td>
+                            <td>{{$volunteer->center->name}}</td>
+                            <td>{{$volunteer->ph_no}}</td>
                         <tr>
                     @endforeach
                     </tbody>

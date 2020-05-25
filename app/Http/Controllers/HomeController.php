@@ -37,7 +37,7 @@ class HomeController extends Controller
     {
         $cities = City::all()->pluck('name','id');
         $data = Center::where('township_id',$id)->get();
-        return view('center_view',compact(['data','cities']));
+        return view('center.center_view',compact(['data','cities']));
     }
 
     public function admin_home(){
