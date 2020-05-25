@@ -2,14 +2,13 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="UTF-8">
-        <title>AdminLTE | Dashboard</title>
+        <title>QuaratineInfo | Dashboard</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-        <!-- bootstrap 3.0.2 -->
+      
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('css/AdminLTE.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/datatables/dataTables.bootstrap.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     </head>
     <body class="skin-black">
@@ -24,15 +23,11 @@
                 </li>
             @endif
         @else
-        <!-- header logo: style can be found in header.less -->
         <header class="header">
             <a href="{{url('admin')}}" class="logo">
-                <!-- Add the class icon to your logo image or logo icon to add the margining -->
-                AdminLTE
+                QuaratineInfo
             </a>
-            <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
-                <!-- Sidebar toggle button-->
                 <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -53,18 +48,14 @@
             </nav>
         </header>
         <div class="wrapper row-offcanvas row-offcanvas-left">
-            <!-- Left side column. contains the logo and sidebar -->
             <aside class="left-side sidebar-offcanvas">
-                <!-- sidebar: style can be found in sidebar.less -->
                 <section class="sidebar">
-                    <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left info">
                             <p>Hello, {{ Auth::user()->name }}</p>
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
                     </div>
-                    <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <li class="active">
                             <a href="{{url('admin')}}">
@@ -146,23 +137,17 @@
                         </li>
                     </ul>
                 </section>
-                <!-- /.sidebar -->
             </aside>
 
-            <!-- Right side column. Contains the navbar and content of the page -->
             <aside class="right-side">
                 @yield('content')
-            </aside><!-- /.right-side -->
-        </div><!-- ./wrapper -->
+            </aside>
+        </div>
         @endguest
 
-        <!-- jQuery 2.0.2 -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-        <!-- jQuery UI 1.10.3 -->
         <script src="{{ asset('js/jquery-ui-1.10.3.min.js') }}" type="text/javascript"></script>
-        <!-- Bootstrap -->
         <script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
-        <!-- AdminLTE App -->
         <script src="{{ asset('js/AdminLTE/app.js') }}" type="text/javascript"></script>   
     </body>
 </html>
