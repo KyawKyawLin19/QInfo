@@ -46,6 +46,10 @@ class HomeController extends Controller
         $volunteers = Volunteer::all();
         $townships = Township::all();
         return view('admin.admin_home',compact(['centers','patients','volunteers','townships']));
-    } 
+    }
+    
+    public function excel(){
+        $patients = DB::table('patients');
+    }
 
 }

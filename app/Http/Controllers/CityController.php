@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\City;
 use Illuminate\Http\Request;
+use App\Exports\CitiesExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CityController extends Controller
 {
@@ -97,5 +99,9 @@ class CityController extends Controller
     {
         $city->delete();
         return redirect('/city')->with('success','City deleted');
+    }
+
+    public function excel_city(){
+        return Excel::download(new CitiesExport, 'cities.xlsx');
     }
 }

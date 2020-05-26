@@ -15,6 +15,10 @@ Route::resource('city','CityController');
 Route::resource('township','TownshipController');
 Route::resource('center','CenterController');
 
+Route::get('excel/center','CenterController@excel_center');
+Route::get('excel/city','CityController@excel_city');
+Route::get('excel/township','TownshipController@excel_township');
+
 
 
 

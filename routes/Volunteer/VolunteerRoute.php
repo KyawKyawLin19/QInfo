@@ -13,5 +13,6 @@ class VolunteerRoute
         Route::get('/getAllVolunteers','VolunteerController@getAllLists');
         Route::post('/searchVolunteer','VolunteerController@searchVolunteer');
         Route::post('/searchAllVolunteers','VolunteerController@searchAllVolunteers');
+        Route::get('excel/volunteer','VolunteerController@excel');
     }
 }

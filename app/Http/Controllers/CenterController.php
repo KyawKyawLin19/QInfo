@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Center;
 use App\Township;
 use Illuminate\Http\Request;
+use App\Exports\CentersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CenterController extends Controller
 {
@@ -102,5 +104,9 @@ class CenterController extends Controller
     {
         $center->delete();
         return redirect('/center')->with('success','Center deleted');
+    }
+
+    public function excel_center(){
+        return Excel::download(new CentersExport, 'centers.xlsx');
     }
 }

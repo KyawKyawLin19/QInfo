@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Center;
 use App\Township;
 use DB;
+use App\Exports\PatientsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PatientController extends Controller
 {
@@ -190,4 +192,9 @@ class PatientController extends Controller
         $patients = DB::select($sql);
         return view('patient.all_patients_view',compact('patients'));
     }
+
+    public function excel(){
+        return Excel::download(new PatientsExport, 'patients.xlsx');
+    }
+
 }

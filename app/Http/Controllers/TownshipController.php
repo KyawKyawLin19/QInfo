@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Township;
 use App\City;
 use Illuminate\Http\Request;
+use App\Exports\TownshipsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TownshipController extends Controller
 {
@@ -103,5 +105,9 @@ class TownshipController extends Controller
     {
         $township->delete();
         return redirect('/township')->with('success','Township deleted');
+    }
+
+    public function excel_township(){
+        return Excel::download(new TownshipsExport, 'townships.xlsx');
     }
 }

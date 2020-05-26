@@ -13,5 +13,6 @@ class PatientRoute
         Route::get('/getAllLists','PatientController@getAllLists');
         Route::post('/search','PatientController@searchPatient');
         Route::post('/searchAll','PatientController@searchAllPatients');
+        Route::get('excel/patient','PatientController@excel');
     }
 }

@@ -24,7 +24,7 @@
                 <div class="box-header">
                     <div class="box-title">
                         <button class="btn btn-primary"><a href="{{url('township/create')}}" class="text-white"><i class="fa fa-plus-square"></i> Add New Township</a></button>
-                        <button class="btn btn-info"><i class="fa fa-download"></i> Generate PDF</button>
+                        <button class="btn btn-info"><a href="{{ url('excel/township') }}" class="text-white"><i class="fa fa-download"></i> Generate Excel</a></button>
                     </div>
                 </div>
                 <div class="box-body">

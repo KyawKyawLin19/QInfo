@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Volunteer;
 use Illuminate\Http\Request;
 use App\Center;
+use App\Exports\VolunteersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class VolunteerController extends Controller
 {
@@ -168,5 +170,9 @@ class VolunteerController extends Controller
  
         $volunteers = $volunteers->get();
         return view('volunteer.all_volunteers_view',compact('volunteers'));
+    }
+
+    public function excel(){
+        return Excel::download(new VolunteersExport, 'volunteers.xlsx');
     }
 }
