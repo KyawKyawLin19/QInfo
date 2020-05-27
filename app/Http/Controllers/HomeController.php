@@ -54,9 +54,23 @@ class HomeController extends Controller
     }
 
     public function getApiData(){
+
+        return view('info');
+    }
+
+    public function searchData(Request $request){
+        $id = $request->searchWithCenter;
         $data = Http::get('https://api.covid19api.com/summary')->json();
-        // dd($data["Global"]["NewConfirmed"]);
-        dd($data);
+        $country = $data["Countries"][$id]["Country"];
+        $newConfirmed = $data["Countries"][$id]["NewConfirmed"];
+        $totalConfirmed = $data["Countries"][$id]["TotalConfirmed"];
+        $newDeaths = $data["Countries"][$id]["NewDeaths"];
+        $totalDeaths = $data["Countries"][$id]["TotalDeaths"];
+        $newRecovered = $data["Countries"][$id]["NewRecovered"];
+        $totalRecovered = $data["Countries"][$id]["TotalRecovered"];
+        $date = $data["Countries"][$id]["Date"];
+        $date =substr($date,0,10);
+        return view('info_details',compact(['date','country','newConfirmed','totalConfirmed','newDeaths','totalDeaths','newRecovered','totalRecovered']));
     }
 
 }

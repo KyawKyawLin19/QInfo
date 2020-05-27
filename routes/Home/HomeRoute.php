@@ -13,6 +13,7 @@ class HomeRoute
         Route::get('/getData/{id}','HomeController@getData');
         Route::get('/getTownships/{id}','HomeController@getTownships');
         Route::get('admin','HomeController@admin_home');
-        Route::get('/getApiData','HomeController@getApiData');
+        Route::get('/getinfo','HomeController@getApiData');
+        Route::post('/searchData','HomeController@searchData');
     }
 }
