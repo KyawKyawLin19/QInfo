@@ -1,15 +1,26 @@
-@extends('layouts.app')
-
-@section('content')
+<!DOCTYPE html>
+<html class="bg-black">
+    <head>
+        <meta charset="UTF-8">
+        <title>AdminLTE | Log in</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <!-- bootstrap 3.0.2 -->
+        <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- font Awesome -->
+        <link href="../../css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <!-- Theme style -->
+        <link href="../../css/AdminLTE.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body class="bg-black">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+                <div class="card-header" style="color:black;">{{ __('Reset Password') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
+                        <div class="alert alert-success" role="alert" style="color:black;">
                             {{ session('status') }}
                         </div>
                     @endif
@@ -18,7 +29,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right" style="color:black;">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -44,4 +55,5 @@
         </div>
     </div>
 </div>
-@endsection
+</body>
+</html>

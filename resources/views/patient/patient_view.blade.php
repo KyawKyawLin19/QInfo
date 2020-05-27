@@ -21,22 +21,34 @@
         <form action="/search" method="post" >
         {{csrf_field()}}
             <div class="row align-items-center">
-                <div class="col-lg-12 col-xl-3 no-sm-border border-right">
+                <div class="col-lg-12 col-xl-1 no-sm-border border-right">
                     <input type="hidden" class="form-control" placeholder="Find Person" name="centerid" value="{{$id}}">
                 </div>
-                <div class="col-lg-12 col-xl-3 no-sm-border border-right">
+                <div class="col-lg-12 col-xl-2 no-sm-border border-right">
                     <div class="wrap-icon">
                         <span class="icon icon-room"></span>
                         <input type="text" class="form-control" placeholder="Search with Name" name="searchWithName">
                     </div>
                 </div>
-                <div class="col-lg-12 col-xl-3 no-sm-border border-right">
+                <div class="col-lg-12 col-xl-2 no-sm-border border-right">
                     <div class="wrap-icon">
                         <span class="icon icon-room"></span>
                         <input type="text" class="form-control" placeholder="Search with NRC" name="searchWithNrc">
                     </div>
                 </div>
-                <div class="col-lg-12 col-xl-3 ml-auto">
+                <div class="col-lg-12 col-xl-2 no-sm-border border-right">
+                    <div class="wrap-icon">
+                        <span class="icon icon-room"></span>
+                        <input type="text" class="form-control" placeholder="Search with Room" name="searchWithRoomNo">
+                    </div>
+                </div>
+                <div class="col-lg-12 col-xl-2 no-sm-border border-right">
+                    <div class="wrap-icon">
+                        <span class="icon icon-room"></span>
+                        <input type="text" class="form-control" placeholder="Search with Ph No" name="searchWithPhNo">
+                    </div>
+                </div>
+                <div class="col-lg-12 col-xl-2 ml-auto">
                     <button class="btn text-white btn-primary" type="submit" id="search" name="search">Search</button>
                 </div>
             </div>

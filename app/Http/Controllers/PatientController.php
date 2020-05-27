@@ -153,6 +153,7 @@ class PatientController extends Controller
         $name = $request->searchWithName;
         $nrc = $request->searchWithNrc;
         $room = $request->searchWithRoomNo;
+        $ph = $request->searchWithPhNo;
         $id = $request->centerid;
 
         $patients = $patients->newQuery();
@@ -170,6 +171,10 @@ class PatientController extends Controller
         if ($request->has('searchWithRoomNo')) {
             $patients->where('room_no','like','%'.$room.'%');
         }
+
+        if ($request->has('searchWithPhNo')) {
+            $patients->where('ph_no','like','%'.$ph.'%');
+        }
  
         $patients = $patients->get();
         return view('patient.patient_view',compact(['patients','id']));
@@ -177,8 +182,10 @@ class PatientController extends Controller
 
 
     public function getAllLists(Patient $patients){
-        $patients = Patient::all();
-        return view('patient.all_patients_view',compact('patients'));
+        $patients = Patient::first()->paginate(10);
+        $centers = Center::all();
+        $paginate = true;
+        return view('patient.all_patients_view',compact(['patients','centers','paginate']));
     }
 
 
@@ -186,33 +193,36 @@ class PatientController extends Controller
 
         $name = $request->searchWithName;
         $nrc = $request->searchWithNrc;
-        $center = $request->searchWithCenter;
+        $phno = $request->searchWithPhNo;
         $room = $request->searchWithRoomNo;
+        $center = $request->searchWithCenter;
 
-        $query = "SELECT * FROM patients";
-        $sql = $query;
-        $conditions = array();
-
-        if(! empty($name)) {
-            $conditions[] = "patients.p_name='$name'";
+        $patients = $patients->newQuery();
+ 
+        if ($request->has('searchWithName')) {
+            $patients->where('p_name','like','%'.$name.'%');
         }
-        if(! empty($nrc)) {
-            $conditions[] = "patients.nrc='$nrc'";
-        }
-        if(! empty($room)) {
-            $conditions[] = "patients.room_no='$room'";
-        }
-        if(! empty($center)) {
-            $sql .=" inner join centers ON patients.center_id = centers.id";
-            $conditions[] = "centers.name='$center'";
+    
+        if ($request->has('searchWithNrc')) {
+            $patients->where('nrc','like','%'.$nrc.'%');
         }
 
-        if (count($conditions) > 0) {
-        $sql .= " WHERE " . implode(' AND ', $conditions);
+        if ($request->has('searchWithPhNo')) {
+            $patients->where('ph_no','like','%'.$phno.'%');
+        }
+        
+        if ($request->has('searchWithRoomNo')) {
+            $patients->where('room_no','like','%'.$room.'%');
         }
 
-        $patients = DB::select($sql);
-        return view('patient.all_patients_view',compact('patients'));
+        if ($request->has('searchWithCenter')) {
+            $patients->where('center_id',$center);
+        }
+ 
+        $patients = $patients->get();
+        $paginate = false;
+        $centers = Center::all();
+        return view('patient.all_patients_view',compact(['patients','centers','paginate']));
     }
 
     public function excel(){

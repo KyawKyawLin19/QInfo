@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="bg-black">
     <head>
         <meta charset="UTF-8">
         <title>AdminLTE | Log in</title>
@@ -11,7 +11,7 @@
         <!-- Theme style -->
         <link href="../../css/AdminLTE.css" rel="stylesheet" type="text/css" />
     </head>
-    <body>
+    <body class="bg-black">
         <div class="form-box" id="login-box">
             <div class="header">Sign In</div>
             <form method="POST" action="{{ route('login') }}">
@@ -36,7 +36,7 @@
                 <div class="footer">                                                               
                     <button type="submit" class="btn bg-olive btn-block">Sign me in</button>  
                     
-                    <!-- <p><a href="#">I forgot my password</a></p> -->    
+                    <p><a href="{{ route('password.request') }}">I forgot my password</a></p>   
                     
                     <a href="register" class="text-center">Register a new membership</a>
                 </div>

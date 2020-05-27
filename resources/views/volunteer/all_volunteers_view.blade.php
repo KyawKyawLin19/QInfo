@@ -21,20 +21,21 @@
         <form action="/searchAllVolunteers" method="post" >
         {{csrf_field()}}
             <div class="row align-items-center">
-                <div class="col-lg-12 col-xl-4 no-sm-border border-right">
-                    <input type="text" class="form-control" placeholder="Search with Center" name="searchWithCenter">
+                <div class="col-lg-12 col-xl-3 no-sm-border border-right">
+                    <input type="text" class="form-control" placeholder="Search with Name" name="searchWithName">
                 </div>
                 <div class="col-lg-12 col-xl-3 no-sm-border border-right">
-                    <div class="wrap-icon">
-                        <span class="icon icon-room"></span>
-                        <input type="text" class="form-control" placeholder="Search with Name" name="searchWithName">
-                    </div>
+                    <input type="text" class="form-control" placeholder="Search with NRC" name="searchWithNrc">
                 </div>
-                <div class="col-lg-12 col-xl-3 no-sm-border border-right">
-                    <div class="wrap-icon">
-                        <span class="icon icon-room"></span>
-                        <input type="text" class="form-control" placeholder="Search with NRC" name="searchWithNrc">
-                    </div>
+                <div class="col-lg-12 col-xl-2 no-sm-border border-right">
+                    <select class="form-control" name="searchWithCenter">
+                        @foreach($centers as $value)
+                            <option value="{{$value->id}}">{{$value->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-lg-12 col-xl-2 no-sm-border border-right">
+                    <input type="text" class="form-control" placeholder="Search with Ph No" name="searchWithPhNo">
                 </div>
                 <div class="col-lg-12 col-xl-2 ml-auto text-right">
                     <button class="btn text-white btn-primary" type="submit" id="search" name="search">Search</button>
@@ -78,6 +79,9 @@
                     </tbody>
                 </table>
             </div>
+            @if($paginate)
+                {{$volunteers->links()}}
+            @endif
         </div>
     </div>   
 @endsection

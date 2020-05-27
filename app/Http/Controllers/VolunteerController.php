@@ -160,16 +160,18 @@ class VolunteerController extends Controller
 
 
     public function getAllLists(Volunteer $volunteers){
-        $volunteers = Volunteer::all();
-        return view('volunteer.all_volunteers_view',compact('volunteers'));
+        $volunteers = Volunteer::first()->paginate(5);
+        $centers = Center::all();
+        $paginate = true;
+        return view('volunteer.all_volunteers_view',compact(['volunteers','centers','paginate']));
     }
-
 
     public function searchAllVolunteers(Request $request,Volunteer $volunteers){
 
         $name = $request->searchWithName;
         $nrc = $request->searchWithNrc;
-     // $center = $request->searchWithCenter;
+        $center = $request->searchWithCenter;
+        $phno = $request->searchWithPhNo;
 
         $volunteers = $volunteers->newQuery();
  
@@ -181,12 +183,19 @@ class VolunteerController extends Controller
             $volunteers->where('nrc','like','%'.$nrc.'%');
         }
 
-        // if ($request->has('searchWithCenter')) {
-        //     $patients->where('center_id','like','%'.$center.'%');
-        // }
+        if ($request->has('searchWithPhNo')) {
+            $volunteers->where('ph_no','like','%'.$phno.'%');
+        }
+
+        if ($request->has('searchWithCenter')) {
+            $volunteers->where('center_id',$center);
+        }
  
         $volunteers = $volunteers->get();
-        return view('volunteer.all_volunteers_view',compact('volunteers'));
+        $paginate = false;
+        $centers = Center::all();
+
+        return view('volunteer.all_volunteers_view',compact(['volunteers','centers','paginate']));
     }
 
     public function excel(){

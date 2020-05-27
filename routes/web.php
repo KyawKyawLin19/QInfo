@@ -6,7 +6,7 @@ use Routes\Patient\PatientRoute;
 use Routes\Home\HomeRoute;
 
 
-Auth::routes(['verify'=>true]);
+Auth::routes();
 PatientRoute::routes();
 VolunteerRoute::routes();
 HomeRoute::routes();
