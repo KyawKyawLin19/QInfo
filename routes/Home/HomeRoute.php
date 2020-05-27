@@ -15,5 +15,6 @@ class HomeRoute
         Route::get('admin','HomeController@admin_home');
         Route::get('/getinfo','HomeController@getApiData');
         Route::post('/searchData','HomeController@searchData');
+        Route::get('/contact','HomeController@contact');
     }
 }

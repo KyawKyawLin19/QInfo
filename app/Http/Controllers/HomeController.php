@@ -9,6 +9,7 @@ use App\City;
 use App\Center;
 use App\Patient;
 use App\Volunteer;
+use App\Country;
 use DB;
 
 class HomeController extends Controller
@@ -41,7 +42,8 @@ class HomeController extends Controller
         return view('center.center_view',compact(['data','cities']));
     }
 
-    public function admin_home(){
+    public function admin_home()
+    {
         $centers = Center::all();
         $patients = Patient::all();
         $volunteers = Volunteer::all();
@@ -49,17 +51,19 @@ class HomeController extends Controller
         return view('admin.admin_home',compact(['centers','patients','volunteers','townships']));
     }
     
-    public function excel(){
+    public function excel()
+    {
         $patients = DB::table('patients');
     }
 
-    public function getApiData(){
-
-        return view('info');
+    public function getApiData()
+    {
+        $countries = Country::all();
+        return view('info',compact('countries'));
     }
 
     public function searchData(Request $request){
-        $id = $request->searchWithCenter;
+        $id = $request->searchWithCountry-1;
         $data = Http::get('https://api.covid19api.com/summary')->json();
         $country = $data["Countries"][$id]["Country"];
         $newConfirmed = $data["Countries"][$id]["NewConfirmed"];
@@ -71,6 +75,10 @@ class HomeController extends Controller
         $date = $data["Countries"][$id]["Date"];
         $date =substr($date,0,10);
         return view('info_details',compact(['date','country','newConfirmed','totalConfirmed','newDeaths','totalDeaths','newRecovered','totalRecovered']));
+    }
+
+    public function contact(){
+        return view('contact');
     }
 
 }

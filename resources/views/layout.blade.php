@@ -37,7 +37,7 @@
 						<li><a href="{{url('/getAllLists')}}"><span>QLists</span></a></li>
 						<li><a href="{{url('/getAllVolunteers')}}"><span>Volunteers</span></a></li>
 						<li><a href="{{url('/getinfo')}}"><span>Info</span></a></li>
-						<li><a href="contact.html"><span>Contact</span></a></li>
+						<li><a href="{{url('/contact')}}"><span>Contact</span></a></li>
 					</ul>
 					</nav>
 				</div>

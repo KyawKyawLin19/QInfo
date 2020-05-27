@@ -6,8 +6,6 @@
         <div class="row align-items-center justify-content-center text-center">
 
           <div class="col-md-10">
-            
-            
             <div class="row justify-content-center mb-4">
               <div class="col-md-10 text-center">
                 <h1 data-aos="fade-up">Find Nearby <span class="typed-words"></span></h1>
@@ -16,15 +14,12 @@
             </div>
 
             <div class="form-search-wrap p-2" data-aos="fade-up" data-aos-delay="200">
-              <!-- <form method="post"> -->
                 <div class="row align-items-center">
                   <div class="col-lg-12 col-xl-4 no-sm-border border-right">
                     <input type="text" class="form-control" placeholder="What are you looking for?" disabled>
                   </div>
                   <div class="col-lg-12 col-xl-3 no-sm-border border-right">
                     <div class="wrap-icon">
-                      <!-- <span class="icon icon-room"></span> -->
-                      <!-- <input type="text" class="form-control" placeholder="Location"> -->
                       <select class="form-control" name="city" id="city">
                         <option value="">
                             Select City

@@ -2,13 +2,13 @@
 
 @section('data')
 
-    <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url({{asset('img/hero_3.jpg')}});" data-aos="fade" data-stellar-background-ratio="0.5">
+    <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url({{asset('img/hero_7.jpg')}});" data-aos="fade" data-stellar-background-ratio="0.5">
         <div class="container">
             <div class="row align-items-center justify-content-center text-center">
                 <div class="col-md-10" data-aos="fade-up" data-aos-delay="400">
                     <div class="row justify-content-center">
                         <div class="col-md-8 text-center">
-                            <h1>Quaratine Person Info</h1>
+                            <h1>Country Detail</h1>
                             <p data-aos="fade-up" data-aos-delay="100">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate beatae quisquam perspiciatis adipisci ipsam quam.</p>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
               <span class="number">{{$totalRecovered}}</span>
             </p>
           </div>
-        </div>
+        </div>  
       </div>
     </div>
 @endsection
