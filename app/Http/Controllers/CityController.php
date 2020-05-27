@@ -43,8 +43,13 @@ class CityController extends Controller
     public function store(Request $request)
     {
         $validatedData = request() -> validate([
-            'name' => 'required|max:100|regex:[a-zA-Z]',
-            ]);
+            'name' => 'required|max:100',
+        ],
+        [
+            'name.required' => 'Please Input City Name',
+            'name.max' => 'City name must less than 100 characters'
+        ]
+    );
 
         $city = City::create($validatedData);
         return redirect('city')->with('success','City has been created');
@@ -82,7 +87,11 @@ class CityController extends Controller
     public function update(Request $request, City $city)
     {
         $validatedData = request() -> validate([
-            'name' => 'required|max:100|regex:[a-zA-Z]',
+            'name' => 'required|max:100',
+        ],
+        [
+            'name.required' => 'Please Input City Name',
+            'name.max' => 'City name must less than 100 characters'
         ]);
         
         $city = $city->update($validatedData);

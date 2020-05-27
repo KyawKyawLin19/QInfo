@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use App\Township;
 use App\City;
 use App\Center;
@@ -50,6 +51,12 @@ class HomeController extends Controller
     
     public function excel(){
         $patients = DB::table('patients');
+    }
+
+    public function getApiData(){
+        $data = Http::get('https://api.covid19api.com/summary')->json();
+        // dd($data["Global"]["NewConfirmed"]);
+        dd($data);
     }
 
 }

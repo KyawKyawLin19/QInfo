@@ -48,7 +48,11 @@ class TownshipController extends Controller
         $validatedData = request() -> validate([
             'name' => 'required|max:100',
             'city_id' => 'required',
-            ]);
+        ],
+        [
+            'name.required' => 'Please Input City Name',
+            'name.max' => 'Township name must less than 100 characters'
+        ]);
 
         $township = Township::create($validatedData);
         return redirect('township')->with('success','Township has been created');
@@ -89,7 +93,11 @@ class TownshipController extends Controller
         $validatedData = request() -> validate([
             'name' => 'required|max:100',
             'city_id' => 'required',
-            ]);
+        ],
+        [
+            'name.required' => 'Please Input City Name',
+            'name.max' => 'Township name must less than 100 characters'
+        ]);
 
         $township = $township->update($validatedData);
         return redirect('township')->with('success','Township has been Updated');

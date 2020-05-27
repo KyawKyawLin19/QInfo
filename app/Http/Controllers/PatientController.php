@@ -51,12 +51,23 @@ class PatientController extends Controller
         $validatedData = request() -> validate([
             'p_name' => 'required|max:100',
             'dob' => 'required',
-            'nrc' => 'required|unique:App\Patient,nrc',
+            'nrc' => 'required|unique:App\Patient,nrc|regex:/(^[0-9]{2}\/[A-Za-z]{6}\([A-Z]\)[0-9]{6})/u',
             'address' => 'required',
-            'ph_no' => 'required|unique:App\Patient,ph_no',
+            'ph_no' => 'required|unique:App\Patient,ph_no|numeric',
             'center_id' => 'required',
-            'room_no' => 'required',
-            ]);
+            'room_no' => 'required|max:20',
+        ],
+        [
+            'p_name.required' => 'Please Input Patient Name',
+            'p_name.max' => 'Patient name must less than 100 characters',
+            'dob.required' => 'Please Input Date of Birth',
+            'nrc.required' => 'Please Input NRC',
+            'address.required' => 'Please Input Patient Address',
+            'ph_no.required' => 'Please Input Ph No',
+            'room_no.required' => 'Please Input Room No',
+            'room_no.max' => 'Room No must less than 20 characters',
+            
+        ]);
 
         $patient = Patient::create($validatedData);
         return redirect('patient')->with('success','Patient has been created');
@@ -97,12 +108,23 @@ class PatientController extends Controller
         $validatedData = request() -> validate([
             'p_name' => 'required|max:100',
             'dob' => 'required',
-            'nrc' => 'required|unique:App\Patient,nrc|regex:[0-9]{2}\/[A-Za-z]{6}\([A-Z]{1}\)[0-9]{6}',
+            'nrc' => 'required|unique:App\Patient,nrc|regex:/(^[0-9]{2}\/[A-Za-z]{6}\([A-Z]\)[0-9]{6})/u',
             'address' => 'required',
-            'ph_no' => 'required|unique:App\Patient,ph_no',
+            'ph_no' => 'required|unique:App\Patient,ph_no|numeric',
             'center_id' => 'required',
             'room_no' => 'required',
-            ]);
+        ],
+        [
+            'p_name.required' => 'Please Input Patient Name',
+            'p_name.max' => 'Patient name must less than 100 characters',
+            'dob.required' => 'Please Input Date of Birth',
+            'nrc.required' => 'Please Input NRC',
+            'address.required' => 'Please Input Patient Address',
+            'ph_no.required' => 'Please Input Ph No',
+            'room_no.required' => 'Please Input Room No',
+            'room_no.max' => 'Room No must less than 20 characters',
+            
+        ]);
 
         $patient = $patient->update($validatedData);
         return redirect('patient')->with('success','Patient has been updated');

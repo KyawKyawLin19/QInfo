@@ -16,8 +16,10 @@
     <div class="container">
         <div class="row">
             @if(session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
+                <div class="alert alert-success alert-dismissable">
+                    <i class="fa fa-check"></i>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <b>Alert!</b> {{ session('success') }}.
                 </div>
             @endif
             <div class="box">
@@ -25,6 +27,7 @@
                     <div class="box-title">
                         <button class="btn btn-primary"><a href="{{ url('patient/create') }}" class="text-white"><i class="fa fa-plus-square"></i> Add New Patient</a></button>
                         <button class="btn btn-info"><a href="{{ url('excel/patient') }}" class="text-white"><i class="fa fa-download"></i> Generate Excel</a></button>
+                        <button class="btn btn-info"><a href="{{ url('/getApiData') }}" class="text-white"><i class="fa fa-download"></i> Get Api</a></button>
                     </div>
                 </div>
                 <div class="box-body">

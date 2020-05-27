@@ -27,24 +27,59 @@
   			<div class="row">
     			<div class="col-md-6">
 					<div class="form-group">
-						<label>Volunteer	 Name</label>
+						@error('name')
+							<div class="alert alert-danger alert-dismissable">
+								<i class="fa fa-ban"></i>
+								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+								<b>Alert!</b> {{ $message }}.
+							</div>
+						@enderror
+						<label>Volunteer Name</label>
 						<input type="text" name="name" class="form-control" value="{{ $volunteer->name }}" required>
 					</div>
 					<div class="form-group">
+						@error('dob')
+							<div class="alert alert-danger alert-dismissable">
+								<i class="fa fa-ban"></i>
+								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+								<b>Alert!</b> {{ $message }}.
+							</div>
+						@enderror
 						<label>Date Of Birth</label>
 						<input type="text" name="dob" class="form-control" value="{{ $volunteer->dob }}" required>
 					</div>
 					<div class="form-group">
+						@error('nrc')
+							<div class="alert alert-danger alert-dismissable">
+								<i class="fa fa-ban"></i>
+								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+								<b>Alert!</b> {{ $message }}.
+							</div>
+						@enderror
 						<label>NRC</label>
 						<input type="text" name="nrc" class="form-control" value="{{ $volunteer->nrc }}" required>
 					</div>	
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
+						@error('address')
+							<div class="alert alert-danger alert-dismissable">
+								<i class="fa fa-ban"></i>
+								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+								<b>Alert!</b> {{ $message }}.
+							</div>
+						@enderror
 						<label>Address</label>
 						<input type="text" name="address" class="form-control" value="{{ $volunteer->address }}" required>
 					</div>
 					<div class="form-group">
+						@error('ph_no')
+							<div class="alert alert-danger alert-dismissable">
+								<i class="fa fa-ban"></i>
+								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+								<b>Alert!</b> {{ $message }}.
+							</div>
+						@enderror
 						<label>Ph No</label>
 						<input type="text" name="ph_no" class="form-control" value="{{ $volunteer->ph_no }}" required>
 					</div>

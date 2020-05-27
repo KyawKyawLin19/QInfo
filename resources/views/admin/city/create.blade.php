@@ -12,22 +12,21 @@
     </section>
 
 	<div class="container">
-		@if ($errors->any())
-	    <div class="alert alert-danger">
-	        <ul>
-	            @foreach ($errors->all() as $error)
-	                <li>{{ $error }}</li>
-	            @endforeach
-	        </ul>
-	    </div>
-		@endif
+		
 		<form action="/city" method="post">
 			@csrf
   			<div class="row">
     			<div class="col-md-12">
 					<div class="form-group">
+						@error('name')
+							<div class="alert alert-danger alert-dismissable">
+								<i class="fa fa-ban"></i>
+								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+								<b>Alert!</b> {{ $message }}.
+							</div>
+						@enderror
 						<label>City Name</label>
-						<input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
+						<input type="text" name="name" class="form-control" value="{{ old('name') }}" placeholder="Enter City Name" required>
 					</div>
 				</div>
                 <div class="col-md-12">
